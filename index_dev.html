@@ -8,7 +8,8 @@
     <link rel="import" href="bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
     <link rel="import" href="bower_components/app-layout/app-header/app-header.html">
     <link rel="import" href="bower_components/app-layout/app-header-layout/app-header-layout.html">
-    <link rel="import" href="bower_components/app-layout/app-toolbar/app-toolbar.html">
+    <link rel="import" href="bower_components/app-route/app-location.html">
+    <link rel="import" href="bower_components/app-route/app-route.html">
     <link rel="import" href="bower_components/iron-icon/iron-icon.html">
     <link rel="import" href="bower_components/iron-icons/iron-icons.html">
     <link rel="import" href="bower_components/iron-icons/notification-icons.html">
@@ -63,17 +64,20 @@
   </head>
   <body>
     <template is="dom-bind" id="scope">
+      <app-location route="{{route}}" use-hash-as-path></app-location>
+      <app-route route="{{route}}" pattern="/:value" data="{{page}}"></app-route>
+
       <app-drawer-layout>
         <app-drawer id="drawer" opened="{{opened}}">
           <div id="drawer-header">
             <img src="/images/martha.jpg" width="150" height="150"/>
           </div>
-          <paper-menu selected="{{selected}}" on-iron-activate="onMenuActivate">
+          <paper-menu selected="{{page.value}}" attr-for-selected="page" on-iron-activate="onMenuActivate">
             <template is="dom-repeat" items='[["About", "info-outline"],
                                               ["Research", "folder-open"],
                                               ["Press", "notification:ondemand-video"],
                                               ["Credits", "social:group"]]'>
-              <paper-icon-item>
+              <paper-icon-item page="[[toLowerCase(item.0)]]">
                 <iron-icon icon="[[item.1]]" item-icon></iron-icon>[[item.0]]
               </paper-icon-item>
             </template>
@@ -88,11 +92,11 @@
               <h1>Martha M. Shiell</h1>
               <p>Cognitive Neuroscientist, Crazy about the Auditory Cortex</p>
             </app-header>
-            <iron-pages selected="[[selected]]">
-              <about-page></about-page>
-              <research-page></research-page>
-              <press-page></press-page>
-              <credits-page></credits-page>
+            <iron-pages selected="[[page.value]]" attr-for-selected="id">
+              <about-page id="about"></about-page>
+              <research-page id="research"></research-page>
+              <press-page id="press"></press-page>
+              <credits-page id="credits"></credits-page>
             </iron-pages>
           </app-header-layout>
         </div>
@@ -100,13 +104,22 @@
     </template>
     <script>
       var scope = document.getElementById('scope');
+
       addEventListener('WebComponentsReady', function() {
-        scope.selected = 0;
+        if (!scope.route.path) {
+          scope.set('route.path', '/about');
+        }
       });
+
+      scope.toLowerCase = function(str) {
+        return str.toLowerCase();
+      }
+
       scope.onMenuActivate = function() {
         if (!scope.$.drawer.persistent)
           scope.$.drawer.close();
       };
+
       scope.openDrawer = function() {
         scope.$.drawer.open();
       };
