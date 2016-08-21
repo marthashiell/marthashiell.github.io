@@ -23,15 +23,19 @@
     <link rel="import" href="research-page.html">
     <style>
     body {
-      color: #111;
+      color: #444;
       font-family: Arial, Helvetica, sans-serif;
     }
     a {
-      color: #336699;
+      color: #369;
       text-decoration: none;
     }
     a:hover {
       text-decoration: underline;
+    }
+    p {
+      font-family: medium-content-serif-font, Georgia, Cambria, "Times New Roman", Times, serif;
+      line-height: 1.5;
     }
 
     #drawer-header {
@@ -46,7 +50,7 @@
     }
 
     #main {
-      max-width: 1000px;
+      max-width: 800px;
     }
 
     app-header {
@@ -86,7 +90,7 @@
             </app-header>
             <iron-pages selected="[[selected]]">
               <about-page></about-page>
-              <research-page ></research-page>
+              <research-page></research-page>
               <press-page></press-page>
               <credits-page></credits-page>
             </iron-pages>
