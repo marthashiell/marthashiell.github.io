@@ -134,7 +134,7 @@
 
       scope.addEventListener('route-changed', function(e) {
         if (e.detail.path == 'route.path') {
-          ga('send', 'pageview');
+          ga('send', 'pageview', e.detail.value);
         }
       });
     </script>

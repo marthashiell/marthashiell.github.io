@@ -18034,7 +18034,7 @@ The PTR, the area of the auditory cortex that was the focus of my Ph.D. research
 
       scope.addEventListener('route-changed', function(e) {
         if (e.detail.path == 'route.path') {
-          ga('send', 'pageview');
+          ga('send', 'pageview', e.detail.value);
         }
       });
     </script>
