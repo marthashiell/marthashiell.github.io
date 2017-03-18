@@ -53,28 +53,6 @@ e.__upgraded__&&!e.__attached&&(e.__attached=!0,e.attachedCallback&&e.attachedCa
       font-family: medium-content-serif-font, Georgia, Cambria, "Times New Roman", Times, serif;
       line-height: 1.5;
     }
-
-    #drawer-header {
-      padding: 10px;
-      text-align: center;
-    }
-    #drawer-header img {
-      border-radius: 75px;
-    }
-    paper-icon-item {
-      cursor: pointer;
-    }
-
-    #main {
-      max-width: 800px;
-    }
-
-    app-header {
-      background-color: #FFF;
-    }
-    paper-icon-button {
-      float: right;
-    }
     </style>
   </head>
   <body><div hidden="" by-vulcanize=""><script>(function () {
@@ -17832,27 +17810,23 @@ if (typeof module !== 'undefined' && typeof exports === 'object') {
   });
 
 </script>
-<dom-module id="about-page" assetpath="/">
+<dom-module id="about-page" assetpath="src/">
   <template>
     <marked-element>
       <script type="text/markdown">
-
 For a list of my publications and citations, check out my [Google Scholar page](https://scholar.google.ca/citations?user=tRU8gt4AAAAJ&hl=en).  
 
 For my CV, look me up on [LinkedIn](https://nl.linkedin.com/in/martha-m-shiell-587690126).  
 
 Want access to my papers? [Email me](mailto:marthashiell@gmail.com) or send me a message on [Researchgate](https://www.researchgate.net/profile/Martha_M_Shiell) to request copies.
-
       </script>
     </marked-element>
   </template>
   <script>
-  Polymer({
-    is: 'about-page'
-  });
+  Polymer({is: 'about-page'});
   </script>
 </dom-module>
-<dom-module id="credits-page" assetpath="/">
+<dom-module id="credits-page" assetpath="src/">
   <template>
     <marked-element>
       <script type="text/markdown">
@@ -17897,8 +17871,6 @@ I also received project support from the [Centre for Interdisciplinary Research 
 ---
 
 Credit to [Eric Dingle](http://ericdingle.com/#/about) for the website design.
-
-
       </script>
     </marked-element>
   </template>
@@ -17906,15 +17878,14 @@ Credit to [Eric Dingle](http://ericdingle.com/#/about) for the website design.
   Polymer({is: 'credits-page'});
   </script>
 </dom-module>
-<dom-module id="press-page" assetpath="/">
+<dom-module id="press-page" assetpath="src/">
   <template>
     <marked-element>
       <script type="text/markdown">
 ## Press
 Interview with the [Cognitive Neuroscience Society](https://www.cogneurosociety.org/deaf_reorganization_shiell/) (2014).
 
-Talking about my PhD research at the [McGill Neuroscience Retreat](https://vimeo.com/57888776
-) (2012). 
+Talking about my PhD research at the [McGill Neuroscience Retreat](https://vimeo.com/57888776) (2012). 
 
 Winning the [Vanier Scholarship](http://publications.mcgill.ca/reporter/2011/08/meet-the-mcgill-vanier-scholarship-recipients-cihr/) (2011).
       </script>
@@ -17924,15 +17895,13 @@ Winning the [Vanier Scholarship](http://publications.mcgill.ca/reporter/2011/08/
   Polymer({is: 'press-page'});
   </script>
 </dom-module>
-<dom-module id="research-page" assetpath="/">
+<dom-module id="research-page" assetpath="src/">
   <template>
     <marked-element>
       <script type="text/markdown">
-
 My PhD research investigated plasticity in the auditory cortex, which means that I studied how the brain can change and adapt in the areas that are responsible for processing sound. For this, I worked with people who were born deaf or became deaf very early in life, and looked at how their auditory cortices were different from people with normal hearing. This work highlighted to me how little we know about the function of the auditory cortex, and led to my post-doctoral research in auditory spatial processing. 
 
 Keep reading to learn more about what I've found out...
-
 
 ### The auditory cortex of deaf people reorganizes to process visual motion.
 
@@ -17962,81 +17931,111 @@ The PTR, the area of the auditory cortex that was the focus of my Ph.D. research
   Polymer({is: 'research-page'});
   </script>
 </dom-module>
-</div>
-    <template is="dom-bind" id="scope">
-      <app-location route="{{route}}" use-hash-as-path=""></app-location>
-      <app-route route="{{route}}" pattern="/:value" data="{{page}}"></app-route>
+<dom-module is="index-app">
+  <template>
+    <style>
+    #drawer-header {
+      padding: 10px;
+      text-align: center;
+    }
+    #drawer-header img {
+      border-radius: 75px;
+    }
+    paper-icon-item {
+      cursor: pointer;
+    }
 
-      <app-drawer-layout>
-        <app-drawer id="drawer" opened="{{opened}}">
-          <div id="drawer-header">
-            <img src="/images/martha.jpg" width="150" height="150">
-          </div>
-          <paper-menu selected="{{page.value}}" attr-for-selected="page" on-iron-activate="onMenuActivate">
-            <template is="dom-repeat" items="[[&quot;About&quot;, &quot;info-outline&quot;],
-                                              [&quot;Research&quot;, &quot;folder-open&quot;],
-                                              [&quot;Press&quot;, &quot;notification:ondemand-video&quot;],
-                                              [&quot;Credits&quot;, &quot;social:group&quot;]]">
-              <paper-icon-item page="[[toLowerCase(item.0)]]">
-                <iron-icon icon="[[item.1]]" item-icon=""></iron-icon>[[item.0]]
-              </paper-icon-item>
-            </template>
-          </paper-menu>
-        </app-drawer>
-        <div id="main">
-          <app-header-layout>
-            <app-header fixed="">
-              <template is="dom-if" if="[[!opened]]">
-                <paper-icon-button icon="menu" on-tap="openDrawer"></paper-icon-button>
-              </template>
-              <h1>Martha M. Shiell</h1>
-              <p>Cognitive Neuroscientist, Crazy about the Auditory Cortex</p>
-            </app-header>
-            <iron-pages selected="[[page.value]]" attr-for-selected="id">
-              <about-page id="about"></about-page>
-              <research-page id="research"></research-page>
-              <press-page id="press"></press-page>
-              <credits-page id="credits"></credits-page>
-            </iron-pages>
-          </app-header-layout>
+    #main {
+      max-width: 800px;
+    }
+
+    app-header {
+      background-color: #FFF;
+    }
+    paper-icon-button {
+      float: right;
+    }
+    </style>
+    <app-location route="{{route}}" use-hash-as-path=""></app-location>
+    <app-route route="{{route}}" pattern="/:value" data="{{page}}"></app-route>
+
+    <app-drawer-layout>
+      <app-drawer id="drawer" opened="{{opened}}">
+        <div id="drawer-header">
+          <img src="/images/martha.jpg" width="150" height="150">
         </div>
-      </app-drawer-layout>
-    </template>
-    <script>
-      var scope = document.getElementById('scope');
-
-      addEventListener('WebComponentsReady', function() {
-        if (!scope.route.path) {
-          scope.set('route.path', '/about');
-        }
-      });
-
-      scope.toLowerCase = function(str) {
-        return str.toLowerCase();
+        <paper-menu selected="{{page.value}}" attr-for-selected="page" on-iron-activate="onMenuActivate">
+          <template is="dom-repeat" items="[[&quot;About&quot;, &quot;info-outline&quot;],
+                                            [&quot;Research&quot;, &quot;folder-open&quot;],
+                                            [&quot;Press&quot;, &quot;notification:ondemand-video&quot;],
+                                            [&quot;Credits&quot;, &quot;social:group&quot;]]">
+            <paper-icon-item page="[[toLowerCase(item.0)]]">
+              <iron-icon icon="[[item.1]]" item-icon=""></iron-icon>[[item.0]]
+            </paper-icon-item>
+          </template>
+        </paper-menu>
+      </app-drawer>
+      <div id="main">
+        <app-header-layout>
+          <app-header fixed="">
+            <template is="dom-if" if="[[!opened]]">
+              <paper-icon-button icon="menu" on-tap="openDrawer"></paper-icon-button>
+            </template>
+            <h1>Martha M. Shiell</h1>
+            <p>Cognitive Neuroscientist, Crazy about the Auditory Cortex</p>
+          </app-header>
+          <iron-pages selected="[[page.value]]" attr-for-selected="id">
+            <about-page id="about"></about-page>
+            <research-page id="research"></research-page>
+            <press-page id="press"></press-page>
+            <credits-page id="credits"></credits-page>
+          </iron-pages>
+        </app-header-layout>
+      </div>
+    </app-drawer-layout>
+  </template>
+  <script>
+  Polymer({
+    is: 'index-app',
+    properties: {
+      route: {
+        type: Object,
+        notify: true
       }
+    },
+    attached: function() {
+      if (!this.route.path)
+        this.set('route.path', '/about');
+    },
+    onMenuActivate: function() {
+      if (!this.$.drawer.persistent)
+        this.$.drawer.close();
+    },
+    toLowerCase: function(str) {
+      return str.toLowerCase();
+    },
+    openDrawer: function() {
+      this.$.drawer.open();
+    }
+  });
+  </script>
+</dom-module>
+</div>
+    <index-app id="index"></index-app>
+    <script>
+    // Google Analytics init.
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-      scope.onMenuActivate = function() {
-        if (!scope.$.drawer.persistent)
-          scope.$.drawer.close();
-      };
+    ga('create', 'UA-83209989-1', 'auto');
 
-      scope.openDrawer = function() {
-        scope.$.drawer.open();
-      };
-
-      // Google Analytics init.
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-83209989-1', 'auto');
-
-      scope.addEventListener('route-changed', function(e) {
-        if (e.detail.path == 'route.path') {
-          ga('send', 'pageview', e.detail.value);
-        }
-      });
+    document.getElementById('index').addEventListener('route-changed', function(e) {
+      if (e.detail.path == 'route.path') {
+        ga('send', 'pageview', e.detail.value);
+      }
+    });
     </script>
   
 
