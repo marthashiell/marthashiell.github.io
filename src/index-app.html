@@ -1,0 +1,108 @@
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/notification-icons.html">
+<link rel="import" href="../bower_components/iron-icons/social-icons.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
+<link rel="import" href="../bower_components/paper-menu/paper-menu.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="about-page.html">
+<link rel="import" href="credits-page.html">
+<link rel="import" href="press-page.html">
+<link rel="import" href="research-page.html">
+<dom-module is="index-app">
+  <template>
+    <style>
+    #drawer-header {
+      padding: 10px;
+      text-align: center;
+    }
+    #drawer-header img {
+      border-radius: 75px;
+    }
+    paper-icon-item {
+      cursor: pointer;
+    }
+
+    #main {
+      max-width: 800px;
+    }
+
+    app-header {
+      background-color: #FFF;
+    }
+    paper-icon-button {
+      float: right;
+    }
+    </style>
+    <app-location route="{{route}}" use-hash-as-path></app-location>
+    <app-route route="{{route}}" pattern="/:value" data="{{page}}"></app-route>
+
+    <app-drawer-layout>
+      <app-drawer id="drawer" opened="{{opened}}">
+        <div id="drawer-header">
+          <img src="/images/martha.jpg" width="150" height="150"/>
+        </div>
+        <paper-menu selected="{{page.value}}" attr-for-selected="page" on-iron-activate="onMenuActivate">
+          <template is="dom-repeat" items='[["About", "info-outline"],
+                                            ["Research", "folder-open"],
+                                            ["Press", "notification:ondemand-video"],
+                                            ["Credits", "social:group"]]'>
+            <paper-icon-item page="[[toLowerCase(item.0)]]">
+              <iron-icon icon="[[item.1]]" item-icon></iron-icon>[[item.0]]
+            </paper-icon-item>
+          </template>
+        </paper-menu>
+      </app-drawer>
+      <div id="main">
+        <app-header-layout>
+          <app-header fixed>
+            <template is="dom-if" if="[[!opened]]">
+              <paper-icon-button icon="menu" on-tap="openDrawer"></paper-icon-button>
+            </template>
+            <h1>Martha M. Shiell</h1>
+            <p>Cognitive Neuroscientist, Crazy about the Auditory Cortex</p>
+          </app-header>
+          <iron-pages selected="[[page.value]]" attr-for-selected="id">
+            <about-page id="about"></about-page>
+            <research-page id="research"></research-page>
+            <press-page id="press"></press-page>
+            <credits-page id="credits"></credits-page>
+          </iron-pages>
+        </app-header-layout>
+      </div>
+    </app-drawer-layout>
+  </template>
+  <script>
+  Polymer({
+    is: 'index-app',
+    properties: {
+      route: {
+        type: Object,
+        notify: true
+      }
+    },
+    attached: function() {
+      if (!this.route.path)
+        this.set('route.path', '/about');
+    },
+    onMenuActivate: function() {
+      if (!this.$.drawer.persistent)
+        this.$.drawer.close();
+    },
+    toLowerCase: function(str) {
+      return str.toLowerCase();
+    },
+    openDrawer: function() {
+      this.$.drawer.open();
+    }
+  });
+  </script>
+</dom-module>
