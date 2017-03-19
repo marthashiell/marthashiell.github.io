@@ -13,10 +13,7 @@
 <link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="../bower_components/paper-menu/paper-menu.html">
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="about-page.html">
-<link rel="import" href="credits-page.html">
-<link rel="import" href="press-page.html">
-<link rel="import" href="research-page.html">
+<link rel="import" href="markdown-page.html">
 <dom-module is="index-app">
   <template>
     <style>
@@ -71,10 +68,10 @@
             <p>Cognitive Neuroscientist, Crazy about the Auditory Cortex</p>
           </app-header>
           <iron-pages selected="[[page.value]]" attr-for-selected="id">
-            <about-page id="about"></about-page>
-            <research-page id="research"></research-page>
-            <press-page id="press"></press-page>
-            <credits-page id="credits"></credits-page>
+            <markdown-page id="about"></markdown-page>
+            <markdown-page id="research"></markdown-page>
+            <markdown-page id="press"></markdown-page>
+            <markdown-page id="credits"></markdown-page>
           </iron-pages>
         </app-header-layout>
       </div>

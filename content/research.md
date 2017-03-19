@@ -1,9 +1,5 @@
-<link rel="import" href="../bower_components/marked-element/marked-element.html">
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<dom-module id="research-page">
-  <template>
-    <marked-element>
-      <script type="text/markdown">
+## Research
+
 My PhD research investigated plasticity in the auditory cortex, which means that I studied how the brain can change and adapt in the areas that are responsible for processing sound. For this, I worked with people who were born deaf or became deaf very early in life, and looked at how their auditory cortices were different from people with normal hearing. This work highlighted to me how little we know about the function of the auditory cortex, and led to my post-doctoral research in auditory spatial processing. 
 
 Keep reading to learn more about what I've found out...
@@ -29,10 +25,3 @@ To test if deaf people could synchronize to "musical" vibrations felt through th
 ### In progress: Auditory spatial processing for scene analysis and localization
 
 The PTR, the area of the auditory cortex that was the focus of my Ph.D. research, is activated in all types of auditory tasks, but it is especially well-known for being sensitive to sounds that originate from different locations. When our brain encodes spatial information about a sound, it can use that information to help us locate interesting events and objects in our environment, a process called spatial localization. But our brains can also use spatial information to help us group sounds into different objects and make sense of them. For example, if two people talk to you at the same time, you can understand one of them better if both people are standing in different places than when they are standing together. This process is called scene analysis. Not a lot of research has investigated how space is used for scene analysis, and very little is known about how this process occurs in the cortex. I'm hoping to make some ground in my post-doctoral research, so stayed tuned for updates to learn more!
-      </script>
-    </marked-element>
-  </template>
-  <script>
-  Polymer({is: 'research-page'});
-  </script>
-</dom-module>

@@ -1,9 +1,3 @@
-<link rel="import" href="../bower_components/marked-element/marked-element.html">
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<dom-module id="credits-page">
-  <template>
-    <marked-element>
-      <script type="text/markdown">
 ## Credits
 
 My research is the fruit of collaboration, made possible by the support of the following colleagues, funding agencies, and institutions.
@@ -45,10 +39,3 @@ I also received project support from the [Centre for Interdisciplinary Research 
 ---
 
 Credit to [Eric Dingle](http://ericdingle.com/#/about) for the website design.
-      </script>
-    </marked-element>
-  </template>
-  <script>
-  Polymer({is: 'credits-page'});
-  </script>
-</dom-module>

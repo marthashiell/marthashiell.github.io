@@ -1,0 +1,17 @@
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/marked-element/marked-element.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<dom-module id="markdown-page">
+  <template>
+    <iron-ajax auto handle-as="text" url="/content/[[id]].md"  last-response="{{response}}"></iron-ajax>
+    <marked-element id="false" markdown="{{response}}"></marked-element>
+  </template>
+  <script>
+  Polymer({
+    is: 'markdown-page',
+    properties: {
+      id: String,
+    }
+  });
+  </script>
+</dom-module>
