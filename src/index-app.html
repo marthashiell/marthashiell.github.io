@@ -48,9 +48,8 @@
           <img src="/images/martha.jpg" width="150" height="150"/>
         </div>
         <paper-menu selected="{{page.value}}" attr-for-selected="page" on-iron-activate="onMenuActivate">
-          <template is="dom-repeat" items='[["About", "info-outline"],
-                                            ["Research", "folder-open"],
-                                            ["Press", "notification:ondemand-video"],
+          <template is="dom-repeat" items='[["Research", "folder-open"],
+                                            ["Some Press", "notification:ondemand-video"],
                                             ["Credits", "social:group"]]'>
             <paper-icon-item page="[[toLowerCase(item.0)]]">
               <iron-icon icon="[[item.1]]" item-icon></iron-icon>[[item.0]]
