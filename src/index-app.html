@@ -6,6 +6,7 @@
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/iron-icons/editor-icons.html">
 <link rel="import" href="../bower_components/iron-icons/notification-icons.html">
 <link rel="import" href="../bower_components/iron-icons/social-icons.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
@@ -49,7 +50,8 @@
         </div>
         <paper-menu selected="{{page.value}}" attr-for-selected="page" on-iron-activate="onMenuActivate">
           <template is="dom-repeat" items='[["Research", "folder-open"],
-                                            ["Some Press", "notification:ondemand-video"],
+                                            ["Funding", "editor:attach-money"],
+                                            ["Press", "notification:ondemand-video"],
                                             ["Credits", "social:group"]]'>
             <paper-icon-item page="[[toLowerCase(item.0)]]">
               <iron-icon icon="[[item.1]]" item-icon></iron-icon>[[item.0]]
@@ -64,11 +66,16 @@
               <paper-icon-button icon="menu" on-tap="openDrawer"></paper-icon-button>
             </template>
             <h1>Martha M. Shiell</h1>
-            <p>[Publications](https://scholar.google.ca/citations?user=tRU8gt4AAAAJ&hl=en) [LinkedIn](https://nl.linkedin.com/in/martha-m-shiell-587690126) [Researchgate](https://www.researchgate.net/profile/Martha_M_Shiell) [Email](mailto:marthashiell@gmail.com)</p>
+            <p>
+              <a href="https://scholar.google.ca/citations?user=tRU8gt4AAAAJ&hl=en">Publications</a> |
+              <a href="https://nl.linkedin.com/in/martha-m-shiell-587690126">LinkedIn</a> |
+              <a href="https://www.researchgate.net/profile/Martha_M_Shiell">Researchgate</a> |
+              <a href="mailto:marthashiell@gmail.com">Email</a>
+            </p>
           </app-header>
           <iron-pages selected="[[page.value]]" attr-for-selected="id">
-            <markdown-page id="about"></markdown-page>
             <markdown-page id="research"></markdown-page>
+            <markdown-page id="funding"></markdown-page>
             <markdown-page id="press"></markdown-page>
             <markdown-page id="credits"></markdown-page>
           </iron-pages>
@@ -87,7 +94,7 @@
     },
     attached: function() {
       if (!this.route.path)
-        this.set('route.path', '/about');
+        this.set('route.path', '/research');
     },
     onMenuActivate: function() {
       if (!this.$.drawer.persistent)
