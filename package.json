@@ -2,10 +2,10 @@
   "devDependencies": {
     "bower": "^1.8.2",
     "gulp": "^3.9.1",
-    "gulp-htmlmin": "^3.0.0",
-    "gulp-minify-inline": "^0.2.1",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-minify-inline": "^1.0.0",
     "gulp-rename": "^1.2.2",
-    "gulp-vulcanize": "^6.1.0"
+    "gulp-vulcanize": "^7.0.0"
   },
   "scripts": {
     "bower": "bower",
