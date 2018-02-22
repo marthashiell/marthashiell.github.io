@@ -12,10 +12,10 @@
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
-<link rel="import" href="../bower_components/paper-menu/paper-menu.html">
-<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="markdown-page.html">
-<dom-module is="index-app">
+<dom-module id="index-app">
   <template>
     <style>
     #drawer-header {
@@ -29,83 +29,76 @@
       cursor: pointer;
     }
 
-    #main {
-      max-width: 800px;
-    }
-
     app-header {
       background-color: #FFF;
     }
+    app-drawer-layout:not([narrow]) [drawer-toggle] {
+      display: none;
+    }
     paper-icon-button {
       float: right;
+    }
+
+    iron-pages {
+      max-width: 800px;
     }
     </style>
     <app-location route="{{route}}" use-hash-as-path></app-location>
     <app-route route="{{route}}" pattern="/:value" data="{{page}}"></app-route>
 
     <app-drawer-layout>
-      <app-drawer id="drawer" opened="{{opened}}">
+      <app-drawer id="drawer" slot="drawer" opened="{{opened}}">
         <div id="drawer-header">
           <img src="/images/martha.jpg" width="150" height="150"/>
         </div>
-        <paper-menu selected="{{page.value}}" attr-for-selected="page" on-iron-activate="onMenuActivate">
+        <paper-listbox selected="{{page.value}}" attr-for-selected="page" on-iron-activate="onListboxActivate">
           <template is="dom-repeat" items='[["Research", "folder-open"],
                                             ["Funding", "editor:attach-money"],
                                             ["Press", "notification:ondemand-video"],
                                             ["Credits", "social:group"]]'>
             <paper-icon-item page="[[toLowerCase(item.0)]]">
-              <iron-icon icon="[[item.1]]" item-icon></iron-icon>[[item.0]]
+              <iron-icon icon="[[item.1]]" slot="item-icon"></iron-icon>[[item.0]]
             </paper-icon-item>
           </template>
         </paper-menu>
       </app-drawer>
-      <div id="main">
-        <app-header-layout>
-          <app-header fixed>
-            <template is="dom-if" if="[[!opened]]">
-              <paper-icon-button icon="menu" on-tap="openDrawer"></paper-icon-button>
-            </template>
-            <h1>Martha M. Shiell</h1>
-            <p>
-              <a href="https://scholar.google.ca/citations?user=tRU8gt4AAAAJ&hl=en">Publications</a> |
-              <a href="https://nl.linkedin.com/in/martha-m-shiell-587690126">LinkedIn</a> |
-              <a href="https://www.researchgate.net/profile/Martha_M_Shiell">Researchgate</a> |
-              <a href="mailto:marthashiell@gmail.com">Email</a>
-            </p>
-          </app-header>
-          <iron-pages selected="[[page.value]]" attr-for-selected="id">
-            <markdown-page id="research"></markdown-page>
-            <markdown-page id="funding"></markdown-page>
-            <markdown-page id="press"></markdown-page>
-            <markdown-page id="credits"></markdown-page>
-          </iron-pages>
-        </app-header-layout>
-      </div>
+      <app-header-layout>
+        <app-header slot="header" fixed>
+          <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+          <markdown-page id="header" visible></markdown-page>
+        </app-header>
+        <iron-pages selected="[[page.value]]" attr-for-selected="id" selected-attribute="visible">
+          <markdown-page id="research"></markdown-page>
+          <markdown-page id="funding"></markdown-page>
+          <markdown-page id="press"></markdown-page>
+          <markdown-page id="credits"></markdown-page>
+        </iron-pages>
+      </app-header-layout>
     </app-drawer-layout>
   </template>
   <script>
-  Polymer({
-    is: 'index-app',
-    properties: {
+  class IndexApp extends Polymer.Element {
+    static get is() { return 'index-app'; }
+    static get properties() { return {
       route: {
         type: Object,
         notify: true
       }
-    },
-    attached: function() {
-      if (!this.route.path)
+    }}
+    connectedCallback() {
+      super.connectedCallback();
+      if (!this.route.path) {
         this.set('route.path', '/research');
-    },
-    onMenuActivate: function() {
+      }
+    }
+    onListboxActivate() {
       if (!this.$.drawer.persistent)
         this.$.drawer.close();
-    },
-    toLowerCase: function(str) {
-      return str.toLowerCase();
-    },
-    openDrawer: function() {
-      this.$.drawer.open();
     }
-  });
+    toLowerCase(str) {
+      return str.toLowerCase();
+    }
+  }
+  customElements.define(IndexApp.is, IndexApp);
   </script>
 </dom-module>
