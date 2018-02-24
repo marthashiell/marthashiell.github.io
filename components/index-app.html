@@ -15,6 +15,7 @@
 <link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="google-analytics.html">
 <link rel="import" href="markdown-page.html">
 <dom-module id="index-app">
   <template>
@@ -46,6 +47,7 @@
     </style>
     <app-location route="{{route}}" use-hash-as-path></app-location>
     <app-route route="{{route}}" pattern="/:value" data="{{page}}"></app-route>
+    <google-analytics path="[[route.path]]"></google-analytics>
 
     <iron-ajax auto url="/content/pages.json" handle-as="json" last-response="{{pages}}" on-response="setDefaultRoute">
     </iron-ajax>
@@ -79,12 +81,6 @@
   <script>
   class IndexApp extends Polymer.Element {
     static get is() { return 'index-app'; }
-    static get properties() { return {
-      route: {
-        type: Object,
-        notify: true
-      }
-    }}
     setDefaultRoute() {
       if (!this.route.path) {
         this.set('route.path', '/' + this.pages[0].page);
