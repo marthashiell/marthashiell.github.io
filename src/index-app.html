@@ -4,6 +4,7 @@
 <link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/iron-icons/editor-icons.html">
@@ -46,18 +47,18 @@
     <app-location route="{{route}}" use-hash-as-path></app-location>
     <app-route route="{{route}}" pattern="/:value" data="{{page}}"></app-route>
 
+    <iron-ajax auto url="/content/pages.json" handle-as="json" last-response="{{pages}}" on-response="setDefaultRoute">
+    </iron-ajax>
+
     <app-drawer-layout>
       <app-drawer id="drawer" slot="drawer" opened="{{opened}}">
         <div id="drawer-header">
           <img src="/images/martha.jpg" width="150" height="150"/>
         </div>
         <paper-listbox selected="{{page.value}}" attr-for-selected="page" on-iron-activate="onListboxActivate">
-          <template is="dom-repeat" items='[["Research", "folder-open"],
-                                            ["Funding", "editor:attach-money"],
-                                            ["Press", "notification:ondemand-video"],
-                                            ["Credits", "social:group"]]'>
-            <paper-icon-item page="[[toLowerCase(item.0)]]">
-              <iron-icon icon="[[item.1]]" slot="item-icon"></iron-icon>[[item.0]]
+          <template is="dom-repeat" items="[[pages]]">
+            <paper-icon-item page="[[item.page]]">
+              <iron-icon icon="[[item.icon]]" slot="item-icon"></iron-icon>[[item.title]]
             </paper-icon-item>
           </template>
         </paper-listbox>
@@ -68,10 +69,9 @@
           <markdown-page id="header" visible></markdown-page>
         </app-header>
         <iron-pages selected="[[page.value]]" attr-for-selected="id" selected-attribute="visible">
-          <markdown-page id="research"></markdown-page>
-          <markdown-page id="funding"></markdown-page>
-          <markdown-page id="press"></markdown-page>
-          <markdown-page id="credits"></markdown-page>
+          <template is="dom-repeat" items="[[pages]]">
+            <markdown-page id="[[item.page]]"></markdown-page>
+          </template>
         </iron-pages>
       </app-header-layout>
     </app-drawer-layout>
@@ -85,18 +85,14 @@
         notify: true
       }
     }}
-    connectedCallback() {
-      super.connectedCallback();
+    setDefaultRoute() {
       if (!this.route.path) {
-        this.set('route.path', '/research');
+        this.set('route.path', '/' + this.pages[0].page);
       }
     }
     onListboxActivate() {
       if (!this.$.drawer.persistent)
         this.$.drawer.close();
-    }
-    toLowerCase(str) {
-      return str.toLowerCase();
     }
   }
   customElements.define(IndexApp.is, IndexApp);

@@ -1,0 +1,17 @@
+[{
+  "title": "Research",
+  "page": "research",
+  "icon": "folder-open"
+}, {
+  "title": "Funding",
+  "page": "funding",
+  "icon": "editor:attach-money"
+}, {
+  "title": "Some Press",
+  "page": "press",
+  "icon": "notification:ondemand-video"
+}, {
+  "title": "Credits",
+  "page": "credits",
+  "icon": "social:group"
+}]
