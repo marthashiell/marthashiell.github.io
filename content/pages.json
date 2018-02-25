@@ -11,7 +11,7 @@
   "page": "press",
   "icon": "notification:ondemand-video"
 }, {
-  "title": "Credits",
-  "page": "credits",
+  "title": "Collaborators",
+  "page": "collaborators",
   "icon": "social:group"
 }]
