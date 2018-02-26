@@ -3,15 +3,11 @@
   "page": "research",
   "icon": "folder-open"
 }, {
-  "title": "Funding",
-  "page": "funding",
-  "icon": "editor:attach-money"
-}, {
-  "title": "Some Press",
-  "page": "press",
-  "icon": "notification:ondemand-video"
-}, {
   "title": "Collaborators",
   "page": "collaborators",
   "icon": "social:group"
+}, {
+  "title": "Funding",
+  "page": "funding",
+  "icon": "editor:attach-money"
 }]
