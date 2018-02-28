@@ -1,4 +1,4 @@
-### Funding
+## Funding
 
 My Post-Doctoral Fellowship is supported by a [Post-Doctoral Training Award](http://www.frqs.gouv.qc.ca/en/bourses-et-subventions/consulter-les-programmes-remplir-une-demande/bourse/formation-postdoctorale--2015-2016-1xseyiso1416322726585) from the [Fonds de Recherche Santé Québec](http://www.frqs.gouv.qc.ca/en/) .
 

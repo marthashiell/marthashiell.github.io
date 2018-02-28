@@ -4,7 +4,9 @@ I study the part of the brain that is responsible for our sense of hearing: the 
 
 In deaf people, it was specifically the posterior auditory cortex that reorganized. In hearing people, this brain region is typically active in response to sound location. However, we know  little about how this auditory spatial information is used by the brain. Since completing my PhD, I have been working on this question.
 
-### Current Work: Auditory spatial processing for scene analysis and localization
+### Current Work:
+
+### Auditory spatial processing for scene analysis and localization
 
 Posterior auditory cortex, which was the focus of my Ph.D. research, is activated in all types of auditory tasks, but it is especially well-known for being sensitive to sounds that originate from different locations. When our brain gets spatial information about a sound, it can use that information to help us locate interesting events and objects in our environment, a process called localization. But our brains can also use spatial information to help us group sounds into different objects and make sense of them. In my recent work, I used functional magnetic resonance imaging (fMRI) to measure brain activity while people listened to two concurrent sounds coming from different locations. By looking at the activity patterns, we could determine how far apart the two sounds were, but not where the sounds were coming from. This might mean that the brain's code for auditory space reflects distance between sounds, rather than locations. 
 
