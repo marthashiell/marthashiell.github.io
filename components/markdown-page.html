@@ -1,3 +1,4 @@
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/marked-element/marked-element.html">
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <dom-module id="markdown-page">
@@ -15,9 +16,10 @@
       line-height: 1.5;
     }
     </style>
-    <marked-element>
+    <iron-ajax id="xhr" url="/content/[[id]].md" handle-as="text"
+               last-response="{{response}}"></iron-ajax>
+    <marked-element markdown="[[response]]">
       <div slot="markdown-html"></div>
-      <script type="text/markdown" src$="[[source]]"></script>
     </marked-element>
   </template>
   <script>
@@ -28,12 +30,11 @@
       visible: {
         type: Boolean,
         observer: 'visibleChanged'
-      },
-      source: String
+      }
     }}
     visibleChanged(visible) {
-      if (visible && !this.source) {
-        this.source = '/content/' + this.id + '.md';
+      if (visible && !this.response) {
+        this.$.xhr.generateRequest();
       }
     }
   }
