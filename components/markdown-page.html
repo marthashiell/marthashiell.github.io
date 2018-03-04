@@ -17,7 +17,7 @@
     }
     </style>
     <iron-ajax id="xhr" url="/content/[[id]].md" handle-as="text"
-               last-response="{{response}}"></iron-ajax>
+               last-response="{{response}}" on-response="onResponse"></iron-ajax>
     <marked-element markdown="[[response]]">
       <div slot="markdown-html"></div>
     </marked-element>
@@ -36,6 +36,9 @@
       if (visible && !this.response) {
         this.$.xhr.generateRequest();
       }
+    }
+    onResponse() {
+      this.dispatchEvent(new CustomEvent('response'));
     }
   }
   customElements.define(MarkdownPage.is, MarkdownPage);
