@@ -92,7 +92,7 @@
         this.$.drawer.close();
     }
     onHeaderRender() {
-      this.shadowRoot.querySelector('app-header').resetLayout();
+      this.shadowRoot.querySelector('app-header-layout').notifyResize();
     }
   }
   customElements.define(IndexApp.is, IndexApp);
