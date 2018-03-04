@@ -2,6 +2,7 @@
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/effects/waterfall.html">
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
@@ -66,7 +67,7 @@
         </paper-listbox>
       </app-drawer>
       <app-header-layout>
-        <app-header slot="header" fixed>
+        <app-header slot="header" effects="waterfall" fixed>
           <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
           <markdown-page id="header" visible></markdown-page>
         </app-header>
