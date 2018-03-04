@@ -1,6 +1,6 @@
 ## Research
 
-I study the part of the brain that is responsible for our sense of hearing: the auditory cortex. During my PhD, I looked at how this brain region is different when someone becomes deaf early in life. My research indicated that early deafness causes parts of the auditory cortex reorganize for vision instead of audition, and this may support improved visual motion detection (more on that below). 
+I study the part of the brain that is responsible for our sense of hearing: the auditory cortex. During my PhD, I looked at how this brain region is different when someone becomes deaf early in life. My research indicated that early deafness causes parts of the auditory cortex to reorganize for vision instead of audition, and this may support improved visual motion detection (more on that below). 
 
 In deaf people, it was specifically the posterior auditory cortex that reorganized. In hearing people, this brain region is typically active in response to sound location. However, we know  little about how this auditory spatial information is used by the brain. Since completing my PhD, I have been working on this question.
 
