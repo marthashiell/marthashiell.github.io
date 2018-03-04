@@ -1,4 +1,3 @@
-<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/marked-element/marked-element.html">
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <dom-module id="markdown-page">
@@ -16,10 +15,9 @@
       line-height: 1.5;
     }
     </style>
-    <iron-ajax id="xhr" url="/content/[[id]].md" handle-as="text"
-               last-response="{{response}}" on-response="onResponse"></iron-ajax>
-    <marked-element markdown="[[response]]">
+    <marked-element disable-remote-sanitization on-marked-render-complete="onRender">
       <div slot="markdown-html"></div>
+      <script type="text/markdown" src$="[[source]]"></script>
     </marked-element>
   </template>
   <script>
@@ -30,15 +28,16 @@
       visible: {
         type: Boolean,
         observer: 'visibleChanged'
-      }
+      },
+      source: String,
     }}
     visibleChanged(visible) {
-      if (visible && !this.response) {
-        this.$.xhr.generateRequest();
+      if (visible && !this.source) {
+        this.source = '/content/' + this.id + '.md';
       }
     }
-    onResponse() {
-      this.dispatchEvent(new CustomEvent('response'));
+    onRender() {
+      this.dispatchEvent(new CustomEvent('render'));
     }
   }
   customElements.define(MarkdownPage.is, MarkdownPage);

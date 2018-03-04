@@ -69,7 +69,7 @@
       <app-header-layout>
         <app-header slot="header" effects="waterfall" fixed>
           <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-          <markdown-page id="header" visible on-response="onHeaderResponse"></markdown-page>
+          <markdown-page id="header" visible on-render="onHeaderRender"></markdown-page>
         </app-header>
         <iron-pages selected="[[page.value]]" attr-for-selected="id" selected-attribute="visible">
           <template is="dom-repeat" items="[[pages]]">
@@ -91,7 +91,7 @@
       if (!this.$.drawer.persistent)
         this.$.drawer.close();
     }
-    onHeaderResponse() {
+    onHeaderRender() {
       this.shadowRoot.querySelector('app-header').resetLayout();
     }
   }
