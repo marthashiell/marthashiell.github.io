@@ -10,7 +10,6 @@ function minifyJS(text, inline) {
   const result = jsMinify(text, {parse: {bare_returns: inline}});
   if (result.error) {
     console.log(result.error);
-    console.log(text.split('\n').slice(10, 30).join('\n'));
     return text;
   }
   return result.code;
