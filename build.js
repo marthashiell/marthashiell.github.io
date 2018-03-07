@@ -23,6 +23,7 @@ function minifyJS(text, inline) {
 
   out = htmlMinify(out, {
     collapseWhitespace: true,
+    ignoreCustomFragments: [],  // Prevent conflict with marked.js.
     minifyCSS: true,
     minifyJS: minifyJS,
     removeComments: true,
