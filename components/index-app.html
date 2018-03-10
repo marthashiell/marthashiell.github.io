@@ -36,7 +36,7 @@
     app-header {
       background-color: #FFF;
     }
-    app-drawer-layout:not([narrow]) [drawer-toggle] {
+    app-drawer-layout:not([narrow]) paper-icon-button[drawer-toggle] {
       display: none;
     }
     paper-icon-button {
@@ -51,15 +51,14 @@
     <app-route route="{{route}}" pattern="/:value" data="{{page}}"></app-route>
     <google-analytics path="[[route.path]]"></google-analytics>
 
-    <iron-ajax auto url="/content/pages.json" handle-as="json" last-response="{{pages}}" on-response="setDefaultRoute">
-    </iron-ajax>
+    <iron-ajax auto url="/content/pages.json" handle-as="json" last-response="{{pages}}" on-response="setDefaultRoute"></iron-ajax>
 
     <app-drawer-layout>
-      <app-drawer id="drawer" slot="drawer" opened="{{opened}}">
+      <app-drawer slot="drawer" opened="{{opened}}">
         <img src="/images/martha.jpg" width="150" height="150"/>
-        <paper-listbox selected="{{page.value}}" attr-for-selected="page" on-iron-activate="onListboxActivate">
+        <paper-listbox selected="{{page.value}}" attr-for-selected="page">
           <template is="dom-repeat" items="[[pages]]">
-            <paper-icon-item page="[[item.page]]">
+            <paper-icon-item page="[[item.page]]" drawer-toggle>
               <iron-icon icon="[[item.icon]]" slot="item-icon"></iron-icon>[[item.title]]
             </paper-icon-item>
           </template>
@@ -85,10 +84,6 @@
       if (!this.route.path) {
         this.set('route.path', '/' + this.pages[0].page);
       }
-    }
-    onListboxActivate() {
-      if (!this.$.drawer.persistent)
-        this.$.drawer.close();
     }
     onHeaderRender() {
       this.shadowRoot.querySelector('app-header-layout').notifyResize();
