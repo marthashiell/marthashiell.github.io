@@ -21,13 +21,14 @@
 <dom-module id="index-app">
   <template>
     <style>
-    #drawer-header {
-      padding: 10px;
+    app-drawer {
       text-align: center;
     }
-    #drawer-header img {
+    app-drawer img {
       border-radius: 75px;
+      margin: 10px;
     }
+
     paper-icon-item {
       cursor: pointer;
     }
@@ -55,9 +56,7 @@
 
     <app-drawer-layout>
       <app-drawer id="drawer" slot="drawer" opened="{{opened}}">
-        <div id="drawer-header">
-          <img src="/images/martha.jpg" width="150" height="150"/>
-        </div>
+        <img src="/images/martha.jpg" width="150" height="150"/>
         <paper-listbox selected="{{page.value}}" attr-for-selected="page" on-iron-activate="onListboxActivate">
           <template is="dom-repeat" items="[[pages]]">
             <paper-icon-item page="[[item.page]]">
