@@ -3,16 +3,17 @@
 <dom-module id="markdown-page">
   <template>
     <style>
-    [slot="markdown-html"] a {
+    a {
       color: #369;
       text-decoration: none;
     }
-    [slot="markdown-html"] a:hover {
+    a:hover {
       text-decoration: underline;
     }
-    [slot="markdown-html"] p {
+    p {
       font-family: medium-content-serif-font, Georgia, Cambria, "Times New Roman", Times, serif;
       line-height: 1.5;
+      max-width: 800px;
     }
     </style>
     <marked-element disable-remote-sanitization on-marked-render-complete="onRender">
@@ -24,16 +25,14 @@
   class MarkdownPage extends Polymer.Element {
     static get is() { return 'markdown-page'; }
     static get properties() { return {
-      id: String,
-      visible: {
-        type: Boolean,
-        observer: 'visibleChanged'
-      },
-      source: String,
+      page: {
+        type: String,
+        observer: 'pageChanged'
+      }
     }}
-    visibleChanged(visible) {
-      if (visible && !this.source) {
-        this.source = '/content/' + this.id + '.md';
+    pageChanged(page) {
+      if (page) {
+        this.source = '/content/' + page + '.md';
       }
     }
     onRender() {

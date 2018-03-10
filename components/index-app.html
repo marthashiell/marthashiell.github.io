@@ -11,7 +11,6 @@
 <link rel="import" href="../bower_components/iron-icons/editor-icons.html">
 <link rel="import" href="../bower_components/iron-icons/notification-icons.html">
 <link rel="import" href="../bower_components/iron-icons/social-icons.html">
-<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-item/paper-icon-item.html">
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
@@ -42,10 +41,6 @@
     paper-icon-button {
       float: right;
     }
-
-    iron-pages {
-      max-width: 800px;
-    }
     </style>
     <app-location route="{{route}}" use-hash-as-path></app-location>
     <app-route route="{{route}}" pattern="/:value" data="{{page}}"></app-route>
@@ -67,13 +62,9 @@
       <app-header-layout>
         <app-header slot="header" effects="waterfall" fixed>
           <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-          <markdown-page id="header" visible on-render="onHeaderRender"></markdown-page>
+          <markdown-page page="header" on-render="onHeaderRender"></markdown-page>
         </app-header>
-        <iron-pages selected="[[page.value]]" attr-for-selected="id" selected-attribute="visible">
-          <template is="dom-repeat" items="[[pages]]">
-            <markdown-page id="[[item.page]]"></markdown-page>
-          </template>
-        </iron-pages>
+        <markdown-page page="[[page.value]]"></markdown-page>
       </app-header-layout>
     </app-drawer-layout>
   </template>
