@@ -1,13 +1,26 @@
 {
   "devDependencies": {
-    "bower": "^1.8.2",
-    "html-minifier": "^3.5.9",
-    "parse5": "^4.0.0",
-    "polymer-build": "^2.1.1",
-    "uglify-es": "^3.3.9"
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-proposal-decorators": "^7.7.0",
+    "@polymer/app-layout": "^3.1.0",
+    "@polymer/app-route": "^3.0.2",
+    "@polymer/decorators": "^3.0.0",
+    "@polymer/iron-ajax": "^3.0.1",
+    "@polymer/iron-icon": "^3.0.1",
+    "@polymer/iron-icons": "^3.0.1",
+    "@polymer/marked-element": "^3.0.1",
+    "@polymer/paper-icon-button": "^3.0.2",
+    "@polymer/paper-item": "^3.0.1",
+    "@polymer/paper-listbox": "^3.0.1",
+    "@polymer/polymer": "^3.3.1",
+    "rollup": "^1.26.3",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-serve": "^1.0.1",
+    "rollup-plugin-terser": "^5.1.2"
   },
   "scripts": {
-    "bower": "bower",
-    "postinstall": "bower install"
+    "dev": "rollup -c --watch",
+    "prod": "rollup -c --environment PROD"
   }
 }
